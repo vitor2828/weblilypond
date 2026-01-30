@@ -16,6 +16,13 @@
     <maven.compiler.release>21</maven.compiler.release>
   </properties>
 
+  <parent>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-parent</artifactId>
+  <version>3.2.2</version>
+  <relativePath/>
+</parent>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -40,6 +47,10 @@
       <artifactId>junit-jupiter-params</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
   </dependencies>
 
   <build>
@@ -50,6 +61,10 @@
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.4.0</version>
         </plugin>
+  			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			  </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
