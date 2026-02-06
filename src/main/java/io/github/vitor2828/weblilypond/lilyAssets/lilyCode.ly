@@ -1,0 +1,1 @@
+\version "2.24.0"  \header {   title = "Escala de Mi Maior" }  \score {   \new Staff {     \clef treble     \key e \major     \time 4/4      e'4 fis' gis' a'     b' cis'' dis'' e''      e''4 dis'' cis'' b'     a' gis' fis' e'   }   \layout { }   \midi { } }

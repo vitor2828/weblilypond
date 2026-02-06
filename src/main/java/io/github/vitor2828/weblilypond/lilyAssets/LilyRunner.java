@@ -10,8 +10,8 @@ public class LilyRunner {
 
     public static void run() {
         List<String> cmd = List.of("lilypond", 
-        "-o", "assets/lilypond/lilyCode",
-        "assets/lilypond/lilyCode.ly"); // list that contais the command;
+        "-o", "target/classes/static/output/lilyCode",
+        "src/main/java/io/github/vitor2828/weblilypond/lilyAssets/lilyCode.ly"); // list that contais the command;
         
         ProcessBuilder lilypond = new ProcessBuilder(cmd); // creates a new process builder instance;
         lilypond.directory(new File(".")); // determines this folder as the working directory
