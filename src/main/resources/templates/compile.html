@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang ="pt-br" xmlns:th "https://www.thymeleaf.org">
+<head>
+    <title>WebLilypond</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body style = "background-color:#f7cb5c">
+    <div class = "text">
+    <h1 style = "text-align:center">WebLilypond Compile</h1>
+    </div>
+
+    <div>
+        <form method="post" action="/compile">
+            <label>
+                Code:
+                <input name ="code"/>
+            </label>
+            <button type="submit">Compile</button>
+        </form>
+    </div>
+
+    <div>
+        <iframe
+            src="output/lilyCode.pdf"
+            width = "50%"
+            height = "600px"
+            style="border:none"
+        ></iframe>
+    </div>
+
+    <midi-player
+        src="output/lilyCode.midi"
+        sound-font visualizer="#myVisualizer">
+    </midi-player>
+    
+    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.4.0"></script>
+</body>
+</html>

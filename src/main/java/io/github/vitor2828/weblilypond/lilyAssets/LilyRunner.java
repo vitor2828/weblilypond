@@ -8,7 +8,7 @@ import java.util.List; // useful for imutable lists of arguments
 
 public class LilyRunner {
 
-    public static void run() {
+    public static int run() {
         List<String> cmd = List.of("lilypond", 
         "-o", "target/classes/static/output/lilyCode",
         "src/main/java/io/github/vitor2828/weblilypond/lilyAssets/lilyCode.ly"); // list that contais the command;
@@ -38,17 +38,25 @@ public class LilyRunner {
 
             int exitCode = process.waitFor(); // stops Java until the process end. Returns an exit code, useful for debugging
 
-            if (exitCode == 0) System.out.println("The process has been finalized correctly!");
-            else System.out.println("The process has been finalized with errors. Code: " + exitCode);
+            if (exitCode == 0) {
+                System.out.println("The process has been finalized correctly!");
+                return 0;
+            }
+            else {
+                System.out.println("The process has been finalized with errors. Code: " + exitCode);
+                return 1;
+            }
 
 
         } catch (IOException e) { // catches io exceptions and treats them
             System.err.println("The process could not be initialized");
             e.printStackTrace();
+            return 1;
 
         } catch (InterruptedException e) { // catches interruptions and treats them 
             Thread.currentThread().interrupt();
             System.err.println("The execution has been interrupted");
+            return 1;
         }
     } 
     

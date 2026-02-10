@@ -1,6 +1,5 @@
 package io.github.vitor2828.weblilypond.controller;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import io.github.vitor2828.weblilypond.lilyAssets.LilyCleaner;
 import io.github.vitor2828.weblilypond.lilyAssets.LilyRunner;
 
 
@@ -17,11 +17,7 @@ public class HomeController {
     
     @RequestMapping("/home")
     public String home() {
-        File trashLilycode = new File ("src/main/java/io/github/vitor2828/weblilypond/lilyAssets/lilyCode.ly");
-        trashLilycode.delete();
-        trashLilycode = new File ("target/classes/static/output/lilyCode.pdf");
-        trashLilycode.delete();
-        
+        LilyCleaner.clean();
         return "home";
     }
 
@@ -40,7 +36,9 @@ public class HomeController {
             System.out.println("The code could not be saved");
             e.printStackTrace();
         }
-        LilyRunner.run();
-        return "home";
+        if (LilyRunner.run() == 1) {
+            return "home";
+        }
+        return "compile";
     }
 }
