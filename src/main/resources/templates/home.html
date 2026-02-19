@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang ="pt-br" xmlns:th "https://www.thymeleaf.org">
 <head>
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
     <title>WebLilypond</title>
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
-<body style = "background-color:#f7cb5c">
-    <div class = "text">
-    <h1 style = "text-align:center">WebLilypond Home</h1>
+<body>
+    <div class = "mainText">
+    <h1 style = "text-align:center; background-color:#165202; margin:0">WebLilypond Home</h1>
     </div>
 
-    <div>
-        <form method="post" action="/compile">
-            <label>
-                Code:
-                <input name ="code"/>
-            </label>
-            <button type="submit">Compile</button>
-        </form>
+    <h2 class="header">Your online LilyPond editor and compiler</h2>
+
+    <div class="grid-container">
+        <div class="input" style ="color:white">Type your code below:
+            
+        </div> 
+        <div class="output">The result will appear here: </div>
     </div>
+
 </body>
 </html>

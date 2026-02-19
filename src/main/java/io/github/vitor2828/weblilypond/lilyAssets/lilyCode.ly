@@ -1,0 +1,1 @@
+\version "2.24.0"  \score {   \new PianoStaff <<     \new Staff {       \relative c'' { c4 d e f }     }     \new Staff {       \clef bass       \relative c { c4 b a g }     }   >>   \layout { }   \midi { } }

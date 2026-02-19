@@ -37,7 +37,8 @@ public class HomeController {
             e.printStackTrace();
         }
         if (LilyRunner.run() == 1) {
-            return "home";
+            LilyCleaner.clean();
+            return "compileError";
         }
         return "compile";
     }

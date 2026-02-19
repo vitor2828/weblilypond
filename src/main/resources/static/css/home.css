@@ -1,5 +1,47 @@
+body {
+    background-color: whitesmoke;
+    margin: 0;
+    padding: 0;
+}
+
+.mainText {
+    font-family: 'Times New Roman';
+    color: white;
+}
+
 .text {
     font-family: 'Times New Roman';
     color: black;
 }
+
+.header {
+    font-family: 'Times New Roman';
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+
+    position: absolute;
+    top: 100px;
+    bottom: 0;
+
+    left: 0;
+    right: 0;
+}
+
+.input {
+    background-color: rgb(65, 59, 59);
+    overflow: hidden;
+}
+
+
+.output {
+    background-color: whitesmoke;
+    overflow: auto;
+}
+
+
 

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang ="pt-br" xmlns:th "https://www.thymeleaf.org">
+<head>
+    <title>WebLilypond</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body style = "background-color:#f7cb5c">
+    <div class = "text">
+    <h1 style = "text-align:center">WebLilypond Error</h1>
+    </div>
+
+    <div>
+        <form method="post" action="/compile">
+            <label>
+                Code:
+                <input name ="code"/>
+            </label>
+            <button type="submit">Compile</button>
+        </form>
+    </div>
+
+    <p>Your code could not be compiled correctly. Please, try again</p>
+</body>
+</html>
