@@ -10,7 +10,7 @@ public class LilyRunner {
 
     public static int run() {
         List<String> cmd = List.of("lilypond", 
-        "-o", "target/classes/static/output/lilyCode",
+        "-o", "src/main/resources/static/output",
         "src/main/java/io/github/vitor2828/weblilypond/lilyAssets/lilyCode.ly"); // list that contais the command;
         
         ProcessBuilder lilypond = new ProcessBuilder(cmd); // creates a new process builder instance;

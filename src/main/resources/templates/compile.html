@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang ="pt-br" xmlns:th "https://www.thymeleaf.org">
+<html lang ="pt-br" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>WebLilypond</title>
     <link rel="stylesheet" href="/css/home.css">
@@ -21,7 +21,7 @@
 
     <div>
         <iframe
-            src="output/lilyCode.pdf"
+            th:src="@{/output/lilyCode.pdf}"
             width = "50%"
             height = "600px"
             style="border:none"
@@ -29,12 +29,12 @@
     </div>
 
     <midi-player
-        src="output/lilyCode.midi"
+        th:src="@{/output/lilyCode.midi}"
         sound-font visualizer="#myVisualizer">
     </midi-player>
 
     <div>
-        <a href="output/lilyCode.midi" download="WebLilypondSong.midi">Download your song here</a>
+        <a th:href="@{/output/lilyCode.midi}" download="WebLilypondSong.midi">Download your song here</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.4.0"></script>

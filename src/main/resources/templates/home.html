@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html lang ="pt-br" xmlns:th "https://www.thymeleaf.org">
+<html lang ="pt-br" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, intial-scale=1.0">
     <title>WebLilypond</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+
     <link rel="stylesheet" th:href="@{/css/home.css}">
+
 </head>
 <body>
     <div class = "mainText">
@@ -12,12 +19,28 @@
 
     <h2 class="header">Your online LilyPond editor and compiler</h2>
 
+    <form method="post" action="/compile">
+        <button class="compileButton" type="submit">Compile</button>
+    
+
     <div class="grid-container">
-        <div class="input" style ="color:white">Type your code below:
-            
+        <div class="input">
+            <p class="mainText"></p>
+            <textarea id = "codeEditor" name="code">Type your code here...</textarea>
         </div> 
-        <div class="output">The result will appear here: </div>
+        <div class="output"></div>
     </div>
 
+    </form>
+
+    <script>
+        const input = document.getElementById("codeEditor");
+        const myCodeMirror = CodeMirror.fromTextArea(input, {
+            lineNumbers: true,
+            mode: "text/plain",
+            theme: "dracula",
+            tabSize: 2
+        });
+    </script>
 </body>
 </html>
