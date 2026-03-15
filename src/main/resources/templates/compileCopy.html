@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" th:href="@{/css/home.css}">
 
+    <script type='text/javascript' src='//www.midijs.net/lib/midi.js'></script>
+
 </head>
 <body>
     <div class = "mainText">
@@ -21,6 +23,11 @@
 
     <form method="post" action="/compile">
         <button class="compileButton" type="submit">Compile</button>
+        <button type="button" class="compileButton" onClick="MIDIjs.play('http://localhost:8080/midi');">Play</button>
+        <button type="button" class="compileButton" onClick="MIDIjs.stop()">Stop</button>
+        <a href="http://localhost:8080/midi">
+            <button type="button" class="compileButton">Download</button>
+        </a>
 
         <div class="grid-container">
             <div class="input">
@@ -31,10 +38,9 @@
                 <iframe 
                     src="http://localhost:8080/pdf"
                     width = "100%"
-                    height = "80%"
+                    height = "100%"
                     style="border:none"
                 ></iframe>
-                <a href="http://localhost:8080/midi">Download your song here</a>
             </div>
         </div>
 
@@ -48,8 +54,13 @@
             theme: "dracula",
             tabSize: 2
         });
+
+        fetch('/code')
+            .then(response => response.text())
+            .then(data => {
+                myCodeMirror.setValue(data);
+            })
     </script>
 
-    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.4.0"></script>
 </body>
 </html>

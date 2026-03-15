@@ -1,10 +1,13 @@
 package io.github.vitor2828.weblilypond.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.github.vitor2828.weblilypond.lilyAssets.LilyCleaner;
 import io.github.vitor2828.weblilypond.lilyAssets.LilyRunner;
@@ -26,10 +30,26 @@ import io.github.vitor2828.weblilypond.lilyAssets.LilyRunner;
 public class HomeController {
 
     
-    @RequestMapping("/home")
-    public String home() {
-        LilyCleaner.clean();
-        return "home";
+    @GetMapping(value = "/code", produces = "text/plain")
+    @ResponseBody
+    public String getCode() {
+        File code = new File(LilyCleaner.lilyFilePath);
+
+        String finalCode = "";
+        
+        try (Scanner reader = new Scanner(code)) {
+            while(reader.hasNextLine()) {
+                String data = reader.nextLine() + "\n";
+                finalCode += data;
+            }
+
+            return finalCode;
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("File could not be found");
+            e.printStackTrace();
+            return "Type your code here...";
+        }   
     }
 
     @GetMapping("/pdf")
@@ -49,10 +69,8 @@ public class HomeController {
 
         else {
             System.out.println("PDF could not be found");
-            return new ResponseEntity<>(pdfFile, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-        // TODO - add IOexception
     }
 
     @GetMapping("/midi")
@@ -74,6 +92,12 @@ public class HomeController {
         }
     }
 
+    @RequestMapping("/home")
+    public String home() {
+        LilyCleaner.clean();
+        getCode();
+        return "home";
+    }
 
     @PostMapping("/compile")
     public String compile(@RequestParam String code) {
@@ -96,6 +120,7 @@ public class HomeController {
         }
         getPdf();
         getMidi();
+        getCode();
         return "compileCopy";
     }
 

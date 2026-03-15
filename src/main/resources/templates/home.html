@@ -26,7 +26,7 @@
         <div class="grid-container">
             <div class="input">
                 <p class="mainText"></p>
-                <textarea id = "codeEditor" name="code" rows="100"></textarea>
+                <textarea id = "codeEditor" name="code"></textarea>
             </div> 
             <div class="output"></div>
         </div>
@@ -41,6 +41,13 @@
             theme: "dracula",
             tabSize: 2
         });
+
+        fetch('/code')
+            .then(response => response.text())
+            .then(data => {
+                myCodeMirror.setValue(data);
+            })
     </script>
+
 </body>
 </html>
