@@ -6,12 +6,13 @@ import java.io.InputStreamReader; // converts bytes into characters
 import java.io.File; // represents system filepaths
 import java.util.List; // useful for imutable lists of arguments
 
+
 public class LilyRunner {
 
     public static int run() {
         List<String> cmd = List.of("lilypond", 
-        "-o", "src/main/resources/static/output",
-        "src/main/java/io/github/vitor2828/weblilypond/lilyAssets/lilyCode.ly"); // list that contais the command;
+        "-o", LilyCleaner.tmpdir,
+        LilyCleaner.lilyFilePath); // list that contais the command;
         
         ProcessBuilder lilypond = new ProcessBuilder(cmd); // creates a new process builder instance;
         lilypond.directory(new File(".")); // determines this folder as the working directory

@@ -5,14 +5,23 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class LilyCleaner {
-    private static void deleteFile(String file) {
-        Path lilyFilePath;
-        try { // cleans codes previously used
-            lilyFilePath = Paths.get("file");
 
-            if (Files.exists(lilyFilePath)) {
-                Files.delete(lilyFilePath);
+
+public class LilyCleaner {
+
+    public static String tmpdir = System.getProperty("java.io.tmpdir") + "/weblilypond";
+    
+    public static String lilyFilePath = tmpdir + "/lilyCode.ly";
+    public static String lilyPdfPath = tmpdir + "/lilyCode.pdf";
+    public static String lilyMidiPath = tmpdir + "/lilyCode.midi";
+
+    private static void deleteFile(String path) {
+        Path lilyPath;
+        try { // cleans codes previously used
+            lilyPath = Paths.get(path);
+            
+            if (Files.exists(lilyPath)) {
+                Files.delete(lilyPath);
                 System.out.println("File deleted successfully");
             }
 
@@ -28,8 +37,8 @@ public class LilyCleaner {
     }
     
     public static void clean() {
-        deleteFile("src/main/java/io/github/vitor2828/weblilypond/lilyAssets/lilyCode.ly");
-        deleteFile("target/classes/static/output/lilyCode.midi");
-        deleteFile("target/classes/static/output/lilyCode.pdf");
+        deleteFile(lilyFilePath);
+        deleteFile(lilyPdfPath);
+        deleteFile(lilyMidiPath);
     }
 }
