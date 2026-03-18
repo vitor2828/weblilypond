@@ -94,6 +94,9 @@ public class HomeController {
 
     @RequestMapping("/home")
     public String home() {
+
+        new File(LilyCleaner.tmpdir).mkdirs();
+
         LilyCleaner.clean();
         getCode();
         return "home";
